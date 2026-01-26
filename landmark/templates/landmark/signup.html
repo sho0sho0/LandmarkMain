@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandMark Management Partner</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f5f7fb;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ================= FORM ================= */
+.form-container {
+  flex: 1;
+  padding: 40px;
+}
+
+.Logo img {
+  width: 180px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 34px;
+  line-height: 46px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 25px;
+}
+
+/* ================= INPUTS ================= */
+.first-last {
+  display: flex;
+  gap: 15px;
+}
+
+ .first-name{
+    display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+ }
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+label {
+ font-size: 14px;
+  margin-bottom: 6px;
+  text-align: left;
+  width: 100%;
+}
+
+input {
+  height: 48px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #0146b1;
+}
+
+/* ================= BUTTON ================= */
+button {
+  width: 160px;
+  height: 48px;
+  border-radius: 10px;
+  background: #0146b1;
+  color: white;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button:hover {
+  background: #003d99;
+}
+
+/* ================= LOGIN LINK ================= */
+.login-redirect {
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.login-redirect a {
+  text-decoration: none;
+  color: #0146b1;
+}
+
+/* ================= IMAGE ================= */
+.image-container {
+  flex: 1;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================= POPUP ================= */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.popup img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.popup h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.popup p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .image-container {
+    display: none;
+  }
+
+  .form-container {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .first-last {
+    flex-direction: row;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 26px;
+    line-height: 36px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+  .first-last {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="Logo">
+                {% load static %}
+                <img src="{% static 'landmark/images/output-onlinepngtools_New.png' %}" alt="Logo">
+            </div>
+            <h2>Hello!</h2>
+            <p>Landmark Management Partner is a consulting firm whose mission is to support organizations to grow and realize their potential.</p>
+            <form action="{% url 'signup' %}" method="POST" id="signup-form">
+                {% csrf_token %}
+                <div class="first-last">
+                    <div class="first-name">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" required>
+                    </div><div class="first-name">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" required>
+                    </div>
+                 </div>
+                <!-- <div class="input-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                </div>
+                <div class="input-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name" required>
+                </div> -->
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="re-password">Re-enter Password</label>
+                    <input type="password" id="re-password" name="re-password" required>
+                </div>
+                <!--  -->
+                <button type="submit">Signup</button>
+            </form>
+            <p class="login-redirect">Do you have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+
+        <div class="image-container">
+            <img src="{% static 'landmark/images/signup.jpeg' %}" alt="Image">
+        </div>
+
+    </div>
+        <div class="popup success" id="successPopup">
+            <img src="{% static 'landmark/images/sucsses.png' %}" alt="Success">
+            <h3>Your Account is completed successfully</h3>
+            <!-- <p id="usernameMessage"></p> -->
+            <p>You can now enroll in any diplomas and explore more .....</p>
+        </div>
+
+        <div class="popup error" id="errorPopup">
+            <img src="{% static 'landmark/images/fail.png' %}" alt="Error">
+            <h3 id="errorTitle">Error</h3>
+            <p id="errorMessage">Please correct the errors and try again.</p>
+        </div>
+    <script>
+document.querySelector('#signup-form').addEventListener('submit', function (event) {
+    event.preventDefault(); 
+
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const passwordPattern = /^[A-Za-z\d@#$%^&*!]{6,}$/;
+    const namePattern = /^[a-zA-Z]+$/;
+
+    const firstName = document.getElementById('first-name').value.trim();
+    const lastName = document.getElementById('last-name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const rePassword = document.getElementById('re-password').value;
+
+    if (!namePattern.test(firstName) || firstName.includes(" ")) {
+        displayErrorPopup('Invalid First Name', 'First name must contain letters only with no spaces.');
+        return;
+    }
+
+    if (!namePattern.test(lastName) || lastName.includes(" ")) {
+        displayErrorPopup('Invalid Last Name', 'Last name must contain letters only with no spaces.');
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        displayErrorPopup('Invalid Email', 'Please enter a valid email address.');
+        return;
+    }
+
+    if (!passwordPattern.test(password)) {
+        displayErrorPopup(
+            'Invalid Password',
+            'Password must be at least 6 characters long and can include letters, numbers, and special characters like @, #, $.');
+        return;
+    }
+
+    if (password !== rePassword) {
+        displayErrorPopup('Password Mismatch', 'Passwords do not match. Please try again.');
+        return;
+    }
+
+    showSuccessPopup();
+
+    setTimeout(() => {
+        this.submit(); 
+    }, 2000); 
+});
+
+function showSuccessPopup() {
+    const successPopup = document.getElementById('successPopup');
+    successPopup.style.display = 'block';
+    setTimeout(() => {
+        successPopup.style.display = 'none';
+    }, 2000);
+}
+
+function displayErrorPopup(title, message) {
+    const errorPopup = document.getElementById('errorPopup');
+    const errorTitle = document.getElementById('errorTitle');
+    const errorMessage = document.getElementById('errorMessage');
+
+    errorTitle.textContent = title;
+    errorMessage.textContent = message;
+
+    errorPopup.style.display = 'block';
+    setTimeout(() => {
+        errorPopup.style.display = 'none';
+    }, 3000); 
+}
+    </script>
+</body>
+</html>

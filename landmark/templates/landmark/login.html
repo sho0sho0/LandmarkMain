@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandMark Management Partner</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+</head>
+
+<style>
+   .container {
+    display: flex;
+    width: 100%;
+    max-width: 2500px;
+    height: 100vh;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.left {
+    flex: 1;
+    background-color: #d5e5ff;
+}
+
+.left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.Logo img {
+    width: 200px;  
+    height: auto;
+    /* margin-top: 150px; */
+    margin-right: 450px;
+}
+
+.right h2 {
+    width: 400px;
+    height: 78px;
+    margin-bottom: 0px;
+    color: #333;
+    font-family: 'poppins';
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 78px;
+    margin-right: 240px;
+}
+
+.right p {
+    width: 400px;
+    height: 81px;
+    top: 82px;
+    margin-bottom: 40px;
+    margin-top: 1px;
+    color: #777;
+    font-family: 'poppins';
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 20px;
+    margin-right: 239px;
+}
+
+form {
+    margin-bottom: 120px;
+    width: 100%;
+    max-width: 500px;
+    margin-right: 100px;
+}
+
+.input-group {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.input-group input {
+    width: 450px;
+    height: 30px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.checkbox-group label {
+    margin-top: 10px;
+}
+.forgot-password {
+    text-align: right;
+    margin-top: 10px;
+}
+.forgot-password a {
+    text-decoration: none;
+    color: #0066cc;
+}
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.create-account {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.create-account a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.create-account a:hover {
+    text-decoration: underline;
+}
+
+button {
+    margin-top: 80px;
+    width: 125px;
+    height: 50px;
+    padding: 12px 40px 12px 40px;
+    gap: 0px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(1, 70, 177, 1);
+    color: #fff;
+    font-family: 'poppins';
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+button:hover {
+    background-color:#bfd0ed;
+}
+
+.popup {
+    display: none;
+    width: 400px;
+    height: 300px;
+    padding: 24px 98px 24px 98px;
+    border-radius: 15px;
+    color: #333;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.popup.success {
+    border-left: 6px solid #4CAF50;
+}
+
+.popup.error {
+    border-left: 6px solid #f44336;
+}
+
+.popup img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.popup h3 {
+    font-family: 'poppins';
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+}
+
+.popup p {
+    font-family: 'poppins';
+    font-weight: 400;
+    font-size: 14px;
+    color: #555;
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack items vertically */
+        height: auto;
+        justify-content: center;
+    }
+
+    .left {
+        display: none; /* Hide the image section for smaller screens */
+    }
+
+    .right {
+        width: 100%; /* Use full width for the form */
+        padding: 20px;
+    }
+
+    .Logo img {
+        margin: 0 auto 20px; /* Center logo and add margin below */
+        display: block;
+    }
+
+    .right h2 {
+        text-align: center; /* Center the heading text */
+        margin: 10px auto;
+        font-size: 28px; /* Adjust font size */
+    }
+
+    .right p {
+        text-align: center; /* Center the paragraph */
+        margin: 5px auto;
+        font-size: 14px; /* Adjust font size for readability */
+    }
+
+    form {
+        width: 90%; /* Make the form width adapt to the screen */
+        margin: 0 auto 20px; /* Center form and add space below */
+    }
+
+    .input-group input {
+        width: 85%; /* Inputs span the full width */
+    }
+
+    .checkbox-group {
+        flex-direction: column; /* Stack Remember Me and Forgot Password */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .forgot-password {
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    button {
+        width: 200px; /* Make button span full width */
+    }
+
+    .popup {
+        width: 80%; /* Adjust pop-up width for smaller screens */
+        padding: 20px;
+    }
+
+    
+}
+
+/* ========== TRUE MOBILE FIX ========== */
+@media (max-width: 768px) {
+
+    body {
+        margin: 0;
+        background: #ffffff;
+    }
+
+    .container {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        border-radius: 0;        /* KEY */
+        overflow: visible;
+    }
+
+    .right {
+        width: 100%;
+        max-width: 100%;
+        padding: 24px 16px;
+        align-items: stretch;
+    }
+
+    /* Kill ALL desktop offsets */
+    .Logo img,
+    .right h2,
+    .right p,
+    form {
+        width: 100%;
+        max-width: 100%;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .Logo img {
+        display: block;
+        margin: 0 auto 20px;
+        width: 140px;
+    }
+
+    .right h2 {
+        font-size: 24px;
+        line-height: 1.3;
+        text-align: center;
+        height: auto;
+    }
+
+    .right p {
+        font-size: 13px;
+        text-align: center;
+        height: auto;
+        margin-bottom: 24px;
+    }
+
+    .input-group input {
+        width: 100%;
+        height: 44px;
+    }
+
+    button {
+        width: 100%;
+        height: 48px;
+        margin-top: 32px;
+    }
+
+    .create-account {
+        text-align: center;
+        margin-top: 16px;
+    }
+}
+
+
+</style>
+
+<body>
+    {% load static %}
+    <div class="container">
+        <div class="left">
+            <img src="{% static 'landmark/images/login.jpeg' %} " alt="Login Image">
+        </div>
+        <div class="right">
+            <div class="Logo">
+                <img src="{% static 'landmark/images/output-onlinepngtools_New.png' %}" alt="Logo">
+            </div>
+            <h2>Welcome Back!</h2>
+            <p>Landmark Management Partner is a consulting firm whose mission is to support organizations to grow and realize their potential.</p>
+            <form id="loginForm" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username" required>
+                </div>
+                <div class="input-group password-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required>
+                </div>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="remember-me" {% if request.session.remember_me %}checked{% endif %}> Remember Me
+                    </label>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p class="create-account">
+                Don't have an account? <a href="{% url 'signup' %}">Create free account</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="popup success" id="successPopup">
+        <img src="{% static 'landmark/images/sucsses.png' %}" alt="Success">
+        <h3>Your Account is completed successfully</h3>
+        <p>You can now enroll in any diplomas and explore more .....</p>
+    </div>
+
+    <!-- Popup Error -->
+    <div class="popup error" id="errorPopup">
+        <img src="{% static 'landmark/images/fail.png' %}" alt="Error">
+        <h3>Your Account has an issue completing</h3>
+        <p>Make sure you filled out all the data correctly and are connected to the internet.</p>
+    </div>
+
+    <script>
+        // Function to show the popup based on messages
+        window.onload = function() {
+            // Check if success or error message exists
+            {% if messages %}
+                {% for message in messages %}
+                    if ("{{ message.tags }}" === "success") {
+                        document.getElementById('successPopup').style.display = 'block';
+                    } else if ("{{ message.tags }}" === "error") {
+                        document.getElementById('errorPopup').style.display = 'block';
+                    }
+                {% endfor %}
+            {% endif %}
+
+            // Close the popup after 5 seconds
+            setTimeout(function() {
+                document.getElementById('successPopup').style.display = 'none';
+                document.getElementById('errorPopup').style.display = 'none';
+            }, 5000); // Adjust the time as needed
+        }
+    </script>
+    
+</body>
+</html>

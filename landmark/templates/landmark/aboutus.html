@@ -1,0 +1,284 @@
+{% extends 'landmark/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+
+ 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+ 
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.about-header h2 {
+  max-width: 1200px;
+  width: 100%;
+  font-weight: 600;
+  font-size: clamp(26px, 4vw, 48px);
+  line-height: 1.25;
+  margin: 100px auto 40px;
+}
+
+.about-content {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.about-content ul {
+  flex: 1;
+}
+
+.about-content ul li {
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.8;
+  color: #333;
+}
+
+.about-image {
+  flex: 1;
+}
+
+.about-image img {
+  border-radius: 45px;
+}
+
+ 
+.info-cards {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+.info-card {
+  flex: 1;
+  padding: 24px;
+  background-color: #e9f0fb;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.info-card h3 {
+  font-size: 19px;
+  font-weight: 600;
+  color: #2c4d8f;
+  margin-bottom: 12px;
+}
+
+.info-card h2 {
+  font-size: clamp(24px, 3vw, 35px);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.5;
+  color: #555;
+}
+
+ 
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+ 
+.AAA {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 150px auto;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.AAA-image {
+  flex: 1;
+  border-radius: 30px;
+}
+
+.AAA-header {
+  flex: 1;
+}
+
+.AAA-header h2 {
+  font-weight: 600;
+  font-size: clamp(20px, 3vw, 28px);
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.AAA-header p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.AAA-header a {
+  font-size: 20px;
+  text-decoration: underline;
+  color: rgba(1, 75, 156, 1);
+}
+
+ 
+.chooseus {
+  display: flex;
+  gap: 50px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 150px auto;
+  padding: 0 20px;
+}
+
+.why {
+  flex: 1;
+}
+
+.why p {
+  font-size: clamp(14px, 2vw, 24px);
+  color: rgba(0, 75, 156, 1);
+  margin-bottom: 15px;
+}
+
+.why h2 {
+  font-weight: 600;
+  font-size: clamp(26px, 4vw, 48px);
+  line-height: 1.3;
+}
+
+.areas {
+  flex: 1;
+}
+
+.areas p {
+  font-size: clamp(16px, 2vw, 25px);
+  line-height: 1.6;
+}
+
+.areas hr {
+  border: 1px solid rgba(161, 161, 161, 1);
+  opacity: 0.7;
+  margin: 20px 0;
+}
+
+ 
+@media (max-width: 800px) {
+
+  .about-content,
+  .info-cards,
+  .AAA,
+  .chooseus {
+    flex-direction: column;
+  }
+
+  .about-header h2 {
+    margin-top: 60px;
+  }
+
+  .AAA {
+    flex-direction: column-reverse;
+  }
+
+  .AAA-header a {
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+}
+
+</style>
+<section> 
+    <div class="about">
+       <div class="about-header">
+        <h2>About Landmark Management Partner</h2>
+       </div>
+
+       <div class="about-content">
+        <ul>
+            <li><p> Established in 2019 as a training and consulting firm </p></li>
+            <li><p>Its founder is Edward Ghabour, a Pharmacist, MBA, DBA </p></li>
+            <li><p>Edward has 34-years experience at a leading multinational pharma company where he led functions of Marketing, Business Development, Strategic Planning, Marketing & Sales Operations, Commercial Excellence, Tranining SFE, and Patient-oriented programs</p></li>
+            <li><p>His passion is to transfer the knowledge and experience he gained through his career to both individuals and organizations in Egypt and aborad</p></li>
+        </ul>
+        <div class="about-image">
+            
+            <img src="{% static 'landmark/images/dr.edward.png' %}" alt="Edward Ghabour">
+           </div>
+       </div>
+    </div>
+  </section>
+
+<section> 
+    <div class="info-cards">
+        <div class="info-card">
+            <h3>Our Vision</h3>
+            <h2>The partner of choice</h2>
+            <p>for Corporates in Egypt and The Middle East in areas of Strategy, Marketing, Market Research, Business Development, Sales Force Effectiveness, and Training & Development.</p>
+        </div>
+        <div class="info-card">
+            <h3>Our Mission</h3>
+            <h2>Support organizations</h2>
+            <p>to grow and realize their potential, via providing strategic recommendations and tailored solutions with best quality and international standards, leading to great outcomes with high customer indulgent.</p>
+        </div>
+        <div class="info-card">
+            <h3>Core Value</h3>
+            <h2>Commitment for excellence</h2>
+            <p>honesty and integrity, ownership, creativity, success mindset, and long-term partnership.</p>
+        </div>
+    </div>
+  </section>
+
+  <section class="AAA">
+
+    <div class="AAA-image">
+      <img src="{% static 'landmark/images/AAA.jpg' %}" alt="AAA">
+    </div>
+    
+    <div class="AAA-header">
+      <h2>LandMark Management Partner Is accredited by The American Accreditation Association</h2>
+      <p>Recognized internationally by the US government to provide accreditation worldwide. AAA accreditation programs are based on recognized international standards that ensure competency of its accredited organizations and global acceptance of its accreditations.</p>
+      <a href="https://aaa-accreditation.org/accredited-organizations/">website-link</a>   
+    </div>
+  </section>
+
+  <section class="chooseus">
+    <div class="why">
+      <p>Why you choose us ?</p>
+      <h2>We are differentiated in three main areas</h2>
+    </div>
+
+    <div class="areas">
+      <p>Basic knowledge coupled with real life experince from top pharma experts</p>
+      <hr>
+      <p>Accredited from The American Accreditation Association</p>
+      <hr>
+      <p>Highly engaging Learning experience </p>
+    </div>
+  </section>
+{% endblock %}

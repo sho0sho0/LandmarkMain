@@ -1,0 +1,37 @@
+# Python cache / compiled
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Env / secrets
+.env
+*.env
+env/
+venv/
+ENV/
+VENV/
+
+# Django stuff
+db.sqlite3
+*.log
+/media/
+staticfiles/
+
+# Celery beat schedule DB (if any)
+celerybeat-schedule
+celerybeat.pid
+
+# IDE/editor stuff
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+
+# Docker runtime data / volumes
+db_data/
+*.pid
+*.sock

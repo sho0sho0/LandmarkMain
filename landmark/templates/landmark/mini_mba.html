@@ -1,0 +1,331 @@
+{% extends 'landmark/base.html' %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'landmark/css/mini_mba.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="mba-container">
+    {%for master in masters %}
+    <div class="mba-info">
+       <div class="mba-title">
+           <p>{{master.name}}</p>
+       </div>
+       <div class="description">
+           <p>{{master.description}}</p>
+       </div>
+       <div class="modules-info">
+           <div class="mba-rate">
+               <svg width="37" height="35" viewBox="0 0 37 35" fill="none" xmlns="http://www.w3.org/2000/svg" style="
+               margin: 0;
+           ">
+                   <path d="M18.0245 0.463525C18.1741 0.00286961 18.8259 0.00287008 18.9755 0.463525L22.878 12.4742C22.945 12.6802 23.1369 12.8197 23.3536 12.8197H35.9823C36.4667 12.8197 36.668 13.4395 36.2762 13.7242L26.0593 21.1472C25.8841 21.2745 25.8107 21.5002 25.8777 21.7062L29.7802 33.7168C29.9299 34.1775 29.4026 34.5605 29.0108 34.2758L18.7939 26.8528C18.6186 26.7255 18.3814 26.7255 18.2061 26.8528L7.98924 34.2758C7.59739 34.5605 7.07015 34.1775 7.21982 33.7168L11.1223 21.7062C11.1893 21.5002 11.1159 21.2745 10.9407 21.1472L0.72382 13.7242C0.331963 13.4395 0.53335 12.8197 1.01771 12.8197H13.6464C13.8631 12.8197 14.055 12.6802 14.122 12.4742L18.0245 0.463525Z" fill="#FFCC00"/>
+                   </svg>
+                   <p>
+                    {{ master.average_rating|floatformat:1 }} 
+                    <span>({{ master.ratings_count }})</span>
+                    </p>
+           </div>
+           <div class="session">
+               <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M25.3403 10.0333C25.3936 10.8467 25.327 11.7667 25.167 12.7933L24.1936 19.0467C23.367 24.26 20.9536 26.02 15.7403 25.2067L9.48698 24.22C7.68698 23.94 6.30031 23.46 5.28698 22.74C3.35365 21.3933 2.79365 19.18 3.32698 15.7667L4.31365 9.51334C5.14031 4.3 7.55365 2.54 12.767 3.35334L19.0203 4.34C23.207 4.99334 25.167 6.7 25.3403 10.0333Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                   <path d="M27.8338 18.46L25.8338 24.4733C24.1671 29.4867 21.5004 30.82 16.4871 29.1533L10.4738 27.1533C7.44711 26.1533 5.76711 24.7667 5.28711 22.74C6.30044 23.46 7.68711 23.94 9.48711 24.22L15.7404 25.2067C20.9538 26.02 23.3671 24.26 24.1938 19.0467L25.1671 12.7933C25.3271 11.7667 25.3938 10.8467 25.3404 10.0333C28.5271 11.7267 29.2204 14.2867 27.8338 18.46Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                   <path d="M11.487 12.4733C12.7683 12.4733 13.807 11.4346 13.807 10.1533C13.807 8.87201 12.7683 7.83331 11.487 7.83331C10.2057 7.83331 9.16699 8.87201 9.16699 10.1533C9.16699 11.4346 10.2057 12.4733 11.487 12.4733Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>
+                  <p>{{ master.module_count}} Modules / {{ master.total_sessions_count }} Sessions</p> 
+           </div>
+           <div class="mba-duration">
+               <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M29.8337 16C29.8337 23.36 23.8603 29.3334 16.5003 29.3334C9.14033 29.3334 3.16699 23.36 3.16699 16C3.16699 8.64002 9.14033 2.66669 16.5003 2.66669C23.8603 2.66669 29.8337 8.64002 29.8337 16Z" stroke="#333333" stroke-width="1.23837" stroke-linecap="round" stroke-linejoin="round"/>
+                   <path d="M21.4468 20.24L17.3135 17.7734C16.5935 17.3467 16.0068 16.32 16.0068 15.48V10.0134" stroke="#333333" stroke-width="1.23837" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>
+                   {% load custom_filters %}
+                   <p>{{ master.course_duration|duration_hours}} / {{ master.course_duration_months }} months</p>
+           </div>
+           <div class="mba-location">
+               <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M16.4998 17.9067C18.7973 17.9067 20.6598 16.0442 20.6598 13.7467C20.6598 11.4492 18.7973 9.58667 16.4998 9.58667C14.2023 9.58667 12.3398 11.4492 12.3398 13.7467C12.3398 16.0442 14.2023 17.9067 16.4998 17.9067Z" stroke="#333333" stroke-width="1.23837"/>
+                   <path d="M5.3266 11.32C7.95327 -0.226643 25.0599 -0.21331 27.6733 11.3334C29.2066 18.1067 24.9933 23.84 21.2999 27.3867C18.6199 29.9734 14.3799 29.9734 11.6866 27.3867C8.0066 23.84 3.79327 18.0934 5.3266 11.32Z" stroke="#333333" stroke-width="1.23837"/>
+                   </svg>
+                   <p>{{master.location}} </p>
+           </div>
+       </div>
+       <div class="mba-calender">
+           <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M11.1665 2.66669V6.66669" stroke="#333333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+               <path d="M21.8335 2.66669V6.66669" stroke="#333333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+               <path d="M5.1665 12.12H27.8332" stroke="#333333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+               <path d="M28.5 11.3334V22.6667C28.5 26.6667 26.5 29.3334 21.8333 29.3334H11.1667C6.5 29.3334 4.5 26.6667 4.5 22.6667V11.3334C4.5 7.33335 6.5 4.66669 11.1667 4.66669H21.8333C26.5 4.66669 28.5 7.33335 28.5 11.3334Z" stroke="#333333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+               <path d="M21.4264 18.2667H21.4384" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+               <path d="M21.4264 22.2667H21.4384" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+               <path d="M16.4938 18.2667H16.5058" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+               <path d="M16.4938 22.2667H16.5058" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+               <path d="M11.5592 18.2667H11.5712" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+               <path d="M11.5592 22.2667H11.5712" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+               </svg>
+               <p>{{master.start_course}}</p>
+        </div>
+
+        <div class="modules-info-mobile">
+            <div class="rate-sessions">
+                <div class="mob-rate">
+                    <svg width="37" height="35" viewBox="0 0 37 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.0245 0.463525C18.1741 0.00286961 18.8259 0.00287008 18.9755 0.463525L22.878 12.4742C22.945 12.6802 23.1369 12.8197 23.3536 12.8197H35.9823C36.4667 12.8197 36.668 13.4395 36.2762 13.7242L26.0593 21.1472C25.8841 21.2745 25.8107 21.5002 25.8777 21.7062L29.7802 33.7168C29.9299 34.1775 29.4026 34.5605 29.0108 34.2758L18.7939 26.8528C18.6186 26.7255 18.3814 26.7255 18.2061 26.8528L7.98924 34.2758C7.59739 34.5605 7.07015 34.1775 7.21982 33.7168L11.1223 21.7062C11.1893 21.5002 11.1159 21.2745 10.9407 21.1472L0.72382 13.7242C0.331963 13.4395 0.53335 12.8197 1.01771 12.8197H13.6464C13.8631 12.8197 14.055 12.6802 14.122 12.4742L18.0245 0.463525Z" fill="#FFCC00"/>
+                        </svg>
+                        <p>
+                            {{ master.average_rating|floatformat:1 }} 
+                            <span>({{ master.ratings_count }})</span>
+                            </p>
+                </div>
+                <div class="session">
+                    <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M25.3403 10.0333C25.3936 10.8467 25.327 11.7667 25.167 12.7933L24.1936 19.0467C23.367 24.26 20.9536 26.02 15.7403 25.2067L9.48698 24.22C7.68698 23.94 6.30031 23.46 5.28698 22.74C3.35365 21.3933 2.79365 19.18 3.32698 15.7667L4.31365 9.51334C5.14031 4.3 7.55365 2.54 12.767 3.35334L19.0203 4.34C23.207 4.99334 25.167 6.7 25.3403 10.0333Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M27.8338 18.46L25.8338 24.4733C24.1671 29.4867 21.5004 30.82 16.4871 29.1533L10.4738 27.1533C7.44711 26.1533 5.76711 24.7667 5.28711 22.74C6.30044 23.46 7.68711 23.94 9.48711 24.22L15.7404 25.2067C20.9538 26.02 23.3671 24.26 24.1938 19.0467L25.1671 12.7933C25.3271 11.7667 25.3938 10.8467 25.3404 10.0333C28.5271 11.7267 29.2204 14.2867 27.8338 18.46Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M11.487 12.4733C12.7683 12.4733 13.807 11.4346 13.807 10.1533C13.807 8.87201 12.7683 7.83331 11.487 7.83331C10.2057 7.83331 9.16699 8.87201 9.16699 10.1533C9.16699 11.4346 10.2057 12.4733 11.487 12.4733Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                       <p>{{ master.module_count}} Modules / {{ master.total_sessions_count }} Sessions</p> 
+                </div>
+            </div>
+            <div class="duration-location">
+                <div class="mob-duration">
+                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M29.8337 16C29.8337 23.36 23.8603 29.3334 16.5003 29.3334C9.14033 29.3334 3.16699 23.36 3.16699 16C3.16699 8.64002 9.14033 2.66669 16.5003 2.66669C23.8603 2.66669 29.8337 8.64002 29.8337 16Z" stroke="#333333" stroke-width="1.23837" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M21.4468 20.24L17.3135 17.7734C16.5935 17.3467 16.0068 16.32 16.0068 15.48V10.0134" stroke="#333333" stroke-width="1.23837" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        {% load custom_filters %}
+                   <p>{{ master.course_duration|duration_hours}} / {{ master.course_duration_months }} months</p>
+           
+                </div>
+                <div class="mob-location">
+                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.4998 17.9067C18.7973 17.9067 20.6598 16.0442 20.6598 13.7467C20.6598 11.4492 18.7973 9.58667 16.4998 9.58667C14.2023 9.58667 12.3398 11.4492 12.3398 13.7467C12.3398 16.0442 14.2023 17.9067 16.4998 17.9067Z" stroke="#333333" stroke-width="1.23837"/>
+                        <path d="M5.3266 11.32C7.95327 -0.226643 25.0599 -0.21331 27.6733 11.3334C29.2066 18.1067 24.9933 23.84 21.2999 27.3867C18.6199 29.9734 14.3799 29.9734 11.6866 27.3867C8.0066 23.84 3.79327 18.0934 5.3266 11.32Z" stroke="#333333" stroke-width="1.23837"/>
+                        </svg>
+                        <p>Online / Offline</p>
+                </div>
+            </div>
+            <div class="call"> 
+            <div class="mob-calender">
+                <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.1665 2.66669V6.66669" stroke="#333333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21.8335 2.66669V6.66669" stroke="#333333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5.1665 12.12H27.8332" stroke="#333333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M28.5 11.3334V22.6667C28.5 26.6667 26.5 29.3334 21.8333 29.3334H11.1667C6.5 29.3334 4.5 26.6667 4.5 22.6667V11.3334C4.5 7.33335 6.5 4.66669 11.1667 4.66669H21.8333C26.5 4.66669 28.5 7.33335 28.5 11.3334Z" stroke="#333333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21.4264 18.2667H21.4384" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21.4264 22.2667H21.4384" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16.4938 18.2667H16.5058" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16.4938 22.2667H16.5058" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11.5592 18.2667H11.5712" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11.5592 22.2667H11.5712" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>{{master.start_course}}</p>
+             </div>
+            </div>
+            <div class="mob-lmp-location">
+                <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.4998 17.9067C18.7973 17.9067 20.6598 16.0442 20.6598 13.7467C20.6598 11.4492 18.7973 9.58667 16.4998 9.58667C14.2023 9.58667 12.3398 11.4492 12.3398 13.7467C12.3398 16.0442 14.2023 17.9067 16.4998 17.9067Z" stroke="#333333" stroke-width="1.23837"/>
+                    <path d="M5.3266 11.32C7.95327 -0.226643 25.0599 -0.21331 27.6733 11.3334C29.2066 18.1067 24.9933 23.84 21.2999 27.3867C18.6199 29.9734 14.3799 29.9734 11.6866 27.3867C8.0066 23.84 3.79327 18.0934 5.3266 11.32Z" stroke="#333333" stroke-width="1.23837"/>
+                    </svg>
+                    <p>{{master.location}} </p>
+            </div>
+         </div>
+
+        <div class="module-content">
+           <div class="mod-title">
+               <p>Modules Contact </p>
+           </div>
+
+           <div class="module-list">
+            {% for module in master.modules.all %}
+                <div class="leader">
+                   <div class="course-header" onclick="toggleDetails(this)">
+                       <li class="course-title">{{module.title}}</li>
+                       <span class="toggle-icon"> 
+                             <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M5.93957 11.9333L14.6329 20.6266C15.6596 21.6533 17.3396 21.6533 18.3662 20.6266L27.0596 11.9333" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                             </svg>
+                       </span>
+                   </div>
+
+                   <div class="course-details" style="height: 0px; overflow: hidden;">
+                        <div class="hour-instructor">
+                           <div class="time">
+                               <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                   <path d="M29.8337 16.5C29.8337 23.86 23.8603 29.8334 16.5003 29.8334C9.14033 29.8334 3.16699 23.86 3.16699 16.5C3.16699 9.14002 9.14033 3.16669 16.5003 3.16669C23.8603 3.16669 29.8337 9.14002 29.8337 16.5Z" stroke="#333333" stroke-width="1.23837" stroke-linecap="round" stroke-linejoin="round"/>
+                                   <path d="M21.4468 20.74L17.3135 18.2733C16.5935 17.8466 16.0068 16.82 16.0068 15.98V10.5133" stroke="#333333" stroke-width="1.23837" stroke-linecap="round" stroke-linejoin="round"/>
+                                   </svg>
+                                   <p>{{ module.duration|duration_hours|default:"N/A" }} </p>
+                           </div>
+                           <div class="instucrt">
+                               <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                   <path d="M23.167 28.5H9.83366C4.50033 28.5 3.16699 27.1667 3.16699 21.8333V11.1667C3.16699 5.83333 4.50033 4.5 9.83366 4.5H23.167C28.5003 4.5 29.8337 5.83333 29.8337 11.1667V21.8333C29.8337 27.1667 28.5003 28.5 23.167 28.5Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                   <path d="M19.167 11.1667H25.8337" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                   <path d="M20.5 16.5H25.8333" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                   <path d="M23.167 21.8333H25.8337" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                   <path d="M11.8333 15.5534C13.1661 15.5534 14.2466 14.4729 14.2466 13.14C14.2466 11.8072 13.1661 10.7267 11.8333 10.7267C10.5004 10.7267 9.41992 11.8072 9.41992 13.14C9.41992 14.4729 10.5004 15.5534 11.8333 15.5534Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                   <path d="M16.5003 22.2733C16.3137 20.34 14.7803 18.82 12.847 18.6467C12.1803 18.58 11.5003 18.58 10.8203 18.6467C8.88699 18.8333 7.35366 20.34 7.16699 22.2733" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                   </svg>
+                                   <p>Instructors : {{ module.instructor|default:"N/A" }}</p>
+                                   
+
+                           </div>
+                        </div>
+                        <div class="component">
+                            {% for session in module.sessions.splitlines %}
+                            <li>{{ session }}</li>
+                            {% endfor %}
+                        </div>
+                       </div>   
+                  </div>
+                  {%endfor%}
+
+
+                  <!-- <div class="delivery">
+                   <p>Delivery: <span>Blend interactive lectures, workshops, case studies, group discussions, assignments, projects.</span></p>
+               </div> -->
+
+            
+               
+               {% if user.is_authenticated %}
+            <div class="mba-enroll-button">
+                
+                <button class="mba-button" data-diploma-id="{{ master.id }}">Enroll</button>
+            </div>
+            {% else %}
+            <div class="mba-enroll-button"></div>
+            <a href="{% url 'login' %}" class="mba-button" style="text-decoration: none; color: #ffffff; text-align: center; margin-top: 20px;">Login to Enroll</a>
+            </div>
+            {% endif %}
+            <div class="comment-sec">
+                <div class="comment-title">
+                    <p>Comments</p>
+                </div>
+            
+                {% for master in masters %}
+                    <div class="mba-img-comment">
+    {% for comment in master.approved_comments %}
+        <div class="image">
+            {% if comment.user.userprofile.image %}
+                <img src="{{ comment.user.userprofile.image.url }}" 
+                     alt="{{ comment.user.get_full_name|default:comment.user.username }}">
+            {% else %}
+                <img src="{% static 'landmark/images/user1.png' %}" 
+                     alt="{{ comment.user.get_full_name|default:comment.user.username }}">
+            {% endif %}
+            <div class="comment">
+                <p>{{ comment.user.get_full_name|default:comment.user.username }}</p>
+                <span>{{ comment.content }}</span>
+            </div>
+        </div>
+    {% endfor %}
+    {% if not master.approved_comments %}
+        <p>No comments available.</p>
+    {% endif %}
+</div>
+                {% endfor %}
+            </div>
+            
+            </div>
+
+            
+
+
+
+                <div class="popup success" id="successPopup" style="display:none;">
+                    <img src="{% static 'landmark/images/enroll-image.jpg' %}" alt="Success">
+                    <h3>One step left to enroll successfully</h3>
+                    <p>After payment .Send a screenshot of your invoice to this contact and will add enrolled diploma to your profile 1 day after payment.</p>
+                    <div class="payment-row">
+                        <p>To go to your payment screen click</p>
+                        <a href="{{ master.link }}" class="payment-link">here</a>
+                    </div>
+                </div>
+
+               
+            
+                </div>
+           </div>
+        </div>
+    </div>
+        {%endfor%}
+</div>
+
+<script>
+
+    function toggleDetails(header) {
+        // Find the details section related to the header
+        
+        const courseDetails = header.nextElementSibling;
+    
+        // Check if it's already open
+        if (header.classList.contains("open")) {
+            header.classList.remove("open");
+            courseDetails.style.height = "0";
+            courseDetails.style.overflow = "hidden"; // Collapse
+        } else {
+            header.classList.add("open");
+            courseDetails.style.height = courseDetails.scrollHeight + "px"; 
+            courseDetails.style.overflow = "visible";
+            // Expand to fit content
+        }
+    
+    
+        // Adjust spacing dynamically for list items
+        const listItems = header.querySelectorAll('li');
+        listItems.forEach((item) => {
+            if (header.classList.contains("open")) {
+                item.style.marginBottom = "20px"; // Expanded spacing
+            } else {
+                item.style.marginBottom = "10px"; // Collapsed spacing
+            }
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.mba-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const diplomaId = button.dataset.diplomaId;
+
+            // Since the mode selection has been removed, we don't need to check for it.
+            // Directly proceed with the enrollment request.
+
+            fetch(`/landmark/minimba/enroll/${diplomaId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                // No need to send mode in the body anymore
+                body: JSON.stringify({}),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('successPopup').style.display = 'block';
+                    } else {
+                        alert('Failed to enroll. Please try again.');
+                    }
+                });
+        });
+    });
+});
+
+
+
+// Utility to get CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + '=') {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+    
+    </script>
+{% endblock %}

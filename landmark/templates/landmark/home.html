@@ -1,0 +1,277 @@
+{% extends "landmark/base.html" %}
+
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'landmark/css/home.css' %}">
+{% endblock %}
+{% block content %}
+<section class="trusted-section">
+    <div class="text-content">
+        <h>The Hub of <br> Pharmaceutical <br> training and <br> consulting</h>
+        <br>
+        <p>Landmark Management Partner is a consulting firm whose mission <br> is to support organizations to grow and realize their potential.</p>
+        <div class="button-group">
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}!</p>
+            {% else %}
+                <button onclick="window.location.href='{% url 'signup' %}';">Signup</button>
+                <button onclick="window.location.href='{% url 'login' %}';">Login</button>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="overlay-container">
+        <img id="changingimage" src="{% if graduation %}{{ graduation.0.image.url }}{% endif %}" alt="Graduation Image" class="background-image">
+        <div class="overlay-card trusted">
+            <div class="icon-container icon-badge">
+                <img src="{% static 'landmark/images/graduation-cap-svgrepo-com[2].svg' %}" alt="Icon" class="icon">
+            </div>
+            <p class="title">Trusted by +5000 Individual</p>
+            <!-- <div class="avatars">
+                {% for profile in random_profiles  %}
+                <img src="{{ profile.image.url }}" alt="{{ profile.full_name }}" class="avatar">
+                {% endfor %}
+            </div> -->
+            <div class="avatars">
+                {% for profile in random_profiles %}
+                <img src="{{ profile.image.url }}" alt="{{profile.full_name}}" class="avatar">
+                {% endfor %}
+            </div>
+        </div>
+         <!-- Overlay 2: Self Improvement -->
+         <div class="overlay-card self-improvement">
+            <div class="icon-containerself-improvement">
+                <img src="{% static 'landmark/images/happy[1].svg' %}" alt="Icon" class="icon">
+            </div>
+            <p>Self Improvement</p>
+        </div>
+        
+        <!-- Overlay 3: Diplomas for you -->
+        <div class="overlay-card diplomas">
+            <div class="icon-containerdiplomas">
+                <img src="{% static 'landmark/images/pen-nib-svgrepo-com[1].svg' %}" alt="Icon" class="icon">
+            </div>
+            <p>Diplomas for you</p>
+        </div>
+    </div>
+    </div>
+</section>
+
+<section class="landmark-partner">
+    <p> Landmark Management Partner in pharmaceutical and nonpharmaceutical in Egypt and Middle East</p>
+    <div class="partners">
+        {% for partner in partners %}
+        <img src="{{partner.logo.url}}" alt="{{partner.company_name}}" class="partners-logo">
+        {% endfor %}
+    </div>
+</section>
+
+<div class="comments-section">
+    <h2>Some comments from our clients <br>testimonials</h2>
+    <div class="comments-container">
+        <div class="comments">
+            {% for item in comments_with_ratings %}
+            <div class="comment-card">
+                <div class="profile">
+                    {% if item.profile_image %}
+                    <img src="{{ item.profile_image }}" alt="{{ item.comment.user.username }}" class="profile-img">
+                    {% else %}
+                    <img src="{% static 'landmark/images/user1.png' %}" alt="{{ item.comment.user.username }}" class="profile-img">
+                    {% endif %}
+                    <span class="quote-icon" style="color: {{ item.random_color }};">❝</span>
+                </div>
+                
+                <!-- <div class="profile">
+                    
+                    {% if item.profile_image %}
+                    <img src="{{ item.profile_image }}" alt="{{ item.comment.user.username }}" class="profile-img">
+                    {% else %}
+                    <img src="{% static 'landmark/images/user1.png' %}" alt="{{ item.comment.user.username }}" class="profile-img">
+                    {% endif %}
+                    <span class="quote-icon">❝</span>
+                </div> -->
+                <p class="comment-text">{{ item.comment.content }}</p>
+                <div class="profile-info">
+                    <h3>{{ item.comment.user.userprofile.full_name }}</h3>
+                    
+                </div>
+                <div class="star-rating">
+                    {% for _ in item.rating_range %}
+                        <span class="star">★</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="arrows">
+        <button class="arrow left-arrow">❮</button>
+        <button class="arrow right-arrow">❯</button>
+    </div>
+</div>
+<section class="gallery-sec"> 
+    <div class="gallery">
+      <p>Our Training Gallery</p>
+      <img id="gallery-image" src="{% if training %}{{ training.0.image.url }}{% endif %}" alt="Training Image" >
+    </div>
+  </section>
+
+<!-- <div class="training-images-section">
+    <h2>Training Images</h2>
+    <div class="training-images-container">
+        <div class="training-images">
+            {% for image in training_images %}
+                <img src="{{ image.image.url }}" alt="{{ image.title }}" class="training-image">
+            {% endfor %}
+        </div>
+    </div>
+    <div class="arrows">
+        <button class="arrow left-arrow">❮</button>
+        <button class="arrow right-arrow">❯</button>
+    </div>
+</div> -->
+
+
+<section class="teams">
+    <div class="team-section">
+        <h2>Meet our dream team</h2>
+        <div class="team-container">
+            {% for member in team_member %}
+                <div class="team-member">
+                    <img src="{{ member.image.url }}" alt="{{ member.name }}">
+                    <div class="overlay">
+                        <p class="name">{{ member.name }}</p>
+                        <p class="title">{{ member.title }}</p>
+                        <div class="icons">
+                            <a href="mailto:{{ member.email_link }}" target="_blank">
+                                <img src="{% static 'landmark/images/gmail.png' %}" alt="Gmail Icon">
+                            </a>
+                            <a href="{{ member.linkedin_link }}" target="_blank">
+                                <img src="{% static 'landmark/images/linkedin 0.png' %}" alt="LinkedIn Icon">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- {% csrf_token %}
+<section class="subscribe"> 
+    <div class="subscription-container">
+        <div class="image-background">
+            <img src="{% static 'landmark/images/subscribe.png' %}" alt="subscribe">
+        </div>
+
+        <div class="text-container">
+            <h2>Never Want to Miss <br>Our News?</h2>
+        </div>
+
+        <div class="form-container">
+            <input type="email" id="email" placeholder="Enter your email address here..." required>
+            <button type="button" onclick="subscribe()">Subscribe</button>
+        </div>
+    </div>
+</section> -->
+
+<section class="contact-us"> 
+    <div class="contact-us-container">
+      <form class="contact-form" method="POST">
+        {% csrf_token %}
+        <h2>Contact Us</h2>
+        
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+  
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+  
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+  
+        <label for="program">Choose Program</label>
+        <select id="program" name="program" >
+          <option value="">Select Program</option>
+          {% for diploma in diplomas %}
+            <option value="{{ diploma.id }}">{{ diploma.name }}</option>
+          {% endfor %}
+        </select>
+  
+        <label for="question">Your Question</label>
+        <textarea id="question" name="question" rows="4" placeholder="Ask your question here..." required></textarea>
+  
+        <button type="submit">Submit</button>
+      </form>
+  
+      <div class="contact-us-image">
+        <img src="{% static 'landmark/images/contactus.jpg' %}" alt="Contact Us Illustration">
+      </div>
+    </div>
+  </section>
+
+  
+<!-- Success Popup -->
+{% if success %}
+    <div class="popup success" id="successPopup" style="display: none;">
+        <img src="{% static 'landmark/images/sucsses.png' %}" alt="Success">
+        <h3>Your inquiry has been sent successfully</h3>
+        <p>Thank you for contacting us! We will get back to you shortly...</p>
+    </div>
+{% endif %}
+
+<!-- Error Popup -->
+{% if error %}
+    <div class="popup error" id="errorPopup" style="display: none;">
+        <img src="{% static 'landmark/images/fail.png' %}" alt="Error">
+        <h3>There was an issue with your submission</h3>
+        <p>Make sure all fields are filled out correctly and that you're connected to the internet.</p>
+    </div>
+{% endif %}
+
+<script>
+    // Graduation images array
+    const images = [
+        {% for image in graduation %}
+        "{{ image.image.url }}",
+        {% endfor %}
+    ];
+
+    // Initialize current index
+    let currentindex = 0;
+
+    // Function to change the image
+    function changeimage() {
+        const imgElement = document.getElementById("changingimage");
+        currentindex = (currentindex + 1) % images.length; // Cycle through images
+        imgElement.src = images[currentindex];
+    }
+
+    // Change the image every 5 seconds (5000ms)
+    setInterval(changeimage, 5000);
+
+    const galleryImages = [
+        {% for image in training %}
+        "{{ image.image.url }}",
+        {% endfor %}
+    ];
+    // Graduation images array
+    let currentIndex = 0;
+
+    function changeImage() {
+    const galleryImage = document.getElementById("gallery-image");
+    galleryImage.style.opacity = 0; // Fade out current image
+
+    setTimeout(() => {
+        currentIndex = (currentIndex + 1) % galleryImages.length; // Move to the next image
+        galleryImage.src = galleryImages[currentIndex];
+        galleryImage.style.opacity = 1; // Fade in the new image
+    }, 1000); // Wait for the fade-out animation to finish
+    }
+
+    // Change the image every 5 seconds
+    setInterval(changeImage, 5000);
+</script>
+<script src="{% static 'landmark/js/home.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "landmark/base.html" %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'landmark/css/feedback.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="feedback-section"> 
+    <div class="feedback-container">
+        <div class="feedback-form">
+            <h2>Help us improve Landmark Services with your feedback!</h2>
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group names">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group-row">
+                    <div class="form-group program">
+                        <label for="program">Program</label>
+                        <input type="text" id="program" name="program">
+                    </div>
+                    <div class="form-group rate">
+                        <label for="rate">Rate</label>
+                        <select id="rate" name="rate" required>
+                            <option value=""></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group fd-comment">
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" name="comment" required style="
+                    background: none;
+                "></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+
+        <div class="feedback-image">
+            <img src="{% static 'landmark/images/feedback.png' %} " alt="Feedback illustration">
+        </div>
+    </div>
+</section>
+
+<!-- Success Popup -->
+{% if success %}
+    <div class="popup success" id="successPopup">
+        <img src="{% static 'landmark/images/sucsses.png' %}" alt="Success">
+        <h3>Your feedback is sent successfully</h3>
+        <p>Thank you for your feedback! We will consider it in the next phase...</p>
+    </div>
+{% endif %}
+
+<!-- Error Popup -->
+{% if error %}
+    <div class="popup error" id="errorPopup">
+        <img src="{% static 'landmark/images/fail.png' %}" alt="Error">
+        <h3>There was an issue with your submission</h3>
+        <p>Make sure all fields are filled out correctly and that you're connected to the internet.</p>
+    </div>
+{% endif %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Select the success and error popups
+        const successPopup = document.getElementById("successPopup");
+        const errorPopup = document.getElementById("errorPopup");
+
+        // Function to show popup with fade-in effect
+        function showPopup(popup) {
+            if (popup) {
+                popup.style.opacity = "0";
+                popup.style.display = "block";
+
+                setTimeout(() => {
+                    popup.style.transition = "opacity 0.5s";
+                    popup.style.opacity = "1";
+
+                    // Automatically hide the popup after 5 seconds
+                    setTimeout(() => {
+                        popup.style.opacity = "0";
+                        setTimeout(() => {
+                            popup.style.display = "none";
+                        }, 500); // Wait for fade-out transition
+                    }, 5000);
+                }, 100);
+            }
+        }
+
+        // Show the success popup if it exists
+        showPopup(successPopup);
+
+        // Show the error popup if it exists
+        showPopup(errorPopup);
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,314 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ------------------ HEADER ------------------ */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    padding: 1rem 2rem;
+    width: 100%;
+    max-width: 1300px;
+    margin: auto;
+    height: auto;
+    position: relative;
+}
+
+header .logo img {
+    width: 180px;
+    height: auto;
+}
+
+/* NAVIGATION */
+header nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+header nav ul li {
+    position: relative;
+}
+
+header nav ul li a {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+    padding: 0.5rem;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #014B9C;
+}
+
+/* Dropdown */
+.dropdown-content {
+    width: 157px;
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    padding: 0.5rem;
+    border-radius: 15px;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 999;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+/* BUTTONS */
+.pc-button-container {
+    display: flex;
+    gap: 20px;
+}
+
+.signup-button, .login-button {
+    width: auto;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Sign up */
+.signup-button {
+    background: #ffffff;
+    border: 2px solid #014B9C;
+    color: #014B9C;
+}
+
+/* Login */
+.login-button {
+    background: #014B9C;
+    border: 2px solid #014B9C;
+    color: #fff;
+}
+
+/* Mobile menu icon */
+.formobile {
+    display: none;
+    list-style: none;
+    cursor: pointer;
+    z-index: 1001;
+    
+}
+
+.formobile li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ------------------ SIDEBAR (MOBILE MENU) ------------------ */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: white;
+    box-shadow: -10px 0 10px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+    list-style: none;
+}
+
+.sidebar li {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 5px;
+     list-style: none;
+}
+
+.sidebar .signup-button,
+.sidebar .login-button {
+    width: 140px;
+    border-radius: 15px;
+}
+
+/* ------------------ PROFILE ICON ------------------ */
+.profile-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.profile-icon img:hover {
+    transform: scale(1.1);
+}
+
+/* ------------------ RESPONSIVE HEADER ------------------ */
+@media (max-width: 800px) {
+
+    header {
+        padding: 0.5rem 1rem;
+        height: auto;
+        width: 100%;
+    }
+
+    header .logo img {
+        width: 140px;
+    }
+
+    nav,
+    .pc-button-container {
+        display: none;
+    }
+
+    .formobile {
+        display: flex;
+    }
+
+    .signup-button,
+    .login-button {
+        width: 120px;
+        height: 45px;
+        font-size: 1rem;
+    }
+
+    .profile-icon img {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+/* ------------------ FOOTER ------------------ */
+.footer {
+    background: rgba(235, 241, 251, 1);
+    padding: 40px 0;
+    border-top: 2px solid #e0e4e8;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: auto;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 0 20px;
+    max-width: 500px;
+}
+
+.footer-logo {
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.footer-section h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.footer-section p,
+.footer-section a {
+    color: #666;
+    font-size: 14px;
+    line-height: 24px;
+    text-decoration: none;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a:hover {
+    color: #0052cc;
+}
+
+/* ------------------ SOCIAL ICONS FIX ------------------ */
+.social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-icons img {
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: contain;
+}
+
+/* ------------------ PAYMENT ICONS ------------------ */
+.payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.payment-icons img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ------------------ FOOTER RESPONSIVE ------------------ */
+@media (max-width: 800px) {
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 25px;
+    }
+
+    .footer-section {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-logo {
+        width: 70%;
+    }
+
+    .social-icons,
+    .payment-icons {
+        justify-content: center;
+    }
+
+    .payment-icons img {
+        margin: 5px;
+    }
+}

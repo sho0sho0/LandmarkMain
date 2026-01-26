@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandMark Management Partner</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'landmark/css/base.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="{% static 'landmark/css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'landmark/css/feedback.css' %}">
+    <link rel="stylesheet" href="{% static 'landmark/css/diplomas.css' %}">
+    <link rel="stylesheet" href="{% static 'landmark/css/mini_mba.css' %}">
+    <link rel="stylesheet" href="{% static 'landmark/css/my_profile.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img onclick="{% url 'index' %}" src="{% static 'landmark/images/output-onlinepngtools_New.png' %}" alt="Logo" >
+        </div>
+
+        <!-- <nav>
+            <ul>
+                <li><a href="{% url 'index' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="{% url 'diploma_list' %}">Diplomas</a></li>
+                <li class="dropdown">
+                    <a href="#">Corporates</a>
+                    <div class="dropdown-content">
+                        <a href="">Training</a>
+                        <a href="">Consulting</a>
+                        <a href="">Assessment</a>
+                    </div>
+                    <img src="{% static 'landmark/images/downward.svg' %}" alt="Downward Icon" class="downward-icon" style="width: 15px; /* Adjust width as needed */
+                    height: 15px; /* Adjust height as needed */
+                    position: absolute;
+                    top: 150%; /* Vertically center it */
+                    margin-right: 25px; /* Adjust to position it beside the dropdown */
+                    transform: translateY(-50%);">
+                </li>
+                <li><a href="{% url 'mini_mba' %}">Mini MBA</a></li>
+                <li><a href="{% url 'feedback' %}">Feedback</a></li>
+            </ul>
+        </nav>
+
+        <div class="button-container">
+            {% if user.is_authenticated %}
+                
+                <a href="{% url 'profile' %}" class="profile-icon">
+                    {% if user_profile.image %}
+                    <img src="{{ user.userprofile.image.url}}" alt="User Profile" title="Manage Account">
+                    {% else %}
+                    <img src="{% static 'landmark/images/user1.png' %}" alt="Default Profile Image">
+                   {% endif %}
+                </a>
+            {% else %}
+                
+                <button onclick="window.location.href='{% url 'signup' %}';" class="signup-button">Signup</button>
+                <button onclick="window.location.href='{% url 'login' %}';" class="login-button">Login</button>
+            {% endif %}
+        </div> -->
+        
+
+        <nav class="hideonmobile">
+            <ul>
+                <li><a href="{% url 'index' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'diploma_list' %}">Diplomas</a></li>
+                <li class="dropdown">
+                    <a href="#">Corporates</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'training' %}">Training</a>
+                        <a href="{% url 'consulting' %}">Consulting</a>
+                        <a href="{% url 'assesment' %}">Assessment</a>
+                    </div>
+                </li>
+                <li><a href="{% url 'mini_mba' %}">Mini MBA</a></li>
+                <li><a href="{% url 'feedback' %}">Feedback</a></li>
+            </ul>
+        </nav>
+        
+        <div class="pc-button-container" > 
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="profile-icon">
+                    {% if user_profile1 and user_profile1.image %}
+                    <img src="{{ user_profile1.image.url }}" alt="User Avatar" class="avatar">
+                {% else %}
+                    <img src="{% static 'landmark/images/user1.png' %}" alt="Default Profile Image">
+                {% endif %}
+                </a>
+            {% else %}
+                <button onclick="window.location.href='{% url 'signup' %}';" class="signup-button">Signup</button>
+                <button onclick="window.location.href='{% url 'login' %}';" class="login-button">Login</button>
+            {% endif %}
+        </div>
+        
+        <li class="formobile" onclick="showsidebar()">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="#5f6368">
+                    <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                </svg>
+            </a>
+        </li>
+        
+        
+        <ul class="sidebar">
+            <li onclick="hidesidebar()">
+                <a href="#">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.16998 14.83L14.83 9.17004" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14.83 14.83L9.16998 9.17004" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </li>
+            {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}" class="profile-icon">
+                        {% if user_profile1 and user_profile1.image %}
+                        <img src="{{ user_profile1.image.url }}" alt="User Avatar" class="avatar">
+                    {% else %}
+                        <img src="{% static 'landmark/images/user1.png' %}" alt="Default Profile Image">
+                    {% endif %}
+            {% else %}
+
+            {% endif %}
+            
+            <!-- Rest of your sidebar links -->
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'diploma_list' %}">Diplomas</a></li>
+            <li><a href="#">Corporates</a></li>
+            <li class="corporates-content">
+                <a href="{% url 'training' %}">Training</a>
+                <a href="{% url 'consulting' %}">Consulting</a>
+                <a href="{% url 'assesment' %}">Assessment</a>
+            </li>
+            <li><a href="{% url 'mini_mba' %}">Mini MBA</a></li>
+            <li><a href="{% url 'feedback' %}">Feedback</a></li>
+
+        
+                {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout" style="display: block;
+                    flex: 1;
+                    width: 100px;
+                    height: 50px;
+                    border-radius: 0;
+                    border: 0;
+                    padding: 0;
+                    gap: 10px;
+                    background-color: #fff;
+                    color: rgba(183, 5, 5, 1);">
+                        <svg width="90" height="30" viewBox="0 0 118 36" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.3828 12.82C10.7445 8.62003 12.9028 6.90503 17.6278 6.90503H17.7795C22.9945 6.90503 25.0828 8.99336 25.0828 14.2084V21.815C25.0828 27.03 22.9945 29.1184 17.7795 29.1184H17.6278C12.9378 29.1184 10.7795 27.4267 10.3945 23.2967"
+                                stroke="#B70505" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M17.4993 18H4.22266" stroke="#B70505" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M6.8263 14.0918L2.91797 18.0001L6.8263 21.9085" stroke="#B70505" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M40.3445 24.224H46.2005V26H38.1605V9.272H40.3445V24.224ZM54.2559 26.216C53.0239 26.216 51.9039 25.936 50.8959 25.376C49.9039 24.816 49.1199 24.024 48.5439 23C47.9839 21.96 47.7039 20.76 47.7039 19.4C47.7039 18.056 47.9919 16.872 48.5679 15.848C49.1599 14.808 49.9599 14.016 50.9679 13.472C51.9759 12.912 53.1039 12.632 54.3519 12.632C55.5999 12.632 56.7279 12.912 57.7359 13.472C58.7439 14.016 59.5359 14.8 60.1119 15.824C60.7039 16.848 60.9999 18.04 60.9999 19.4C60.9999 20.76 60.6959 21.96 60.0879 23C59.4959 24.024 58.6879 24.816 57.6639 25.376C56.6399 25.936 55.5039 26.216 54.2559 26.216ZM54.2559 24.296C55.0399 24.296 55.7759 24.112 56.4639 23.744C57.1519 23.376 57.7039 22.824 58.1199 22.088C58.5519 21.352 58.7679 20.456 58.7679 19.4C58.7679 18.344 58.5599 17.448 58.1439 16.712C57.7279 15.976 57.1839 15.432 56.5119 15.08C55.8399 14.712 55.1119 14.528 54.3279 14.528C53.5279 14.528 52.7919 14.712 52.1199 15.08C51.4639 15.432 50.9359 15.976 50.5359 16.712C50.1359 17.448 49.9359 18.344 49.9359 19.4C49.9359 20.472 50.1279 21.376 50.5119 22.112C50.9119 22.848 51.4399 23.4 52.0959 23.768C52.7519 24.12 53.4719 24.296 54.2559 24.296ZM69.2954 12.632C70.4314 12.632 71.4234 12.88 72.2714 13.376C73.1354 13.872 73.7754 14.496 74.1914 15.248V12.848H76.3994V26.288C76.3994 27.488 76.1434 28.552 75.6314 29.48C75.1194 30.424 74.3834 31.16 73.4234 31.688C72.4794 32.216 71.3754 32.48 70.1114 32.48C68.3834 32.48 66.9434 32.072 65.7914 31.256C64.6394 30.44 63.9594 29.328 63.7514 27.92H65.9114C66.1514 28.72 66.6474 29.36 67.3994 29.84C68.1514 30.336 69.0554 30.584 70.1114 30.584C71.3114 30.584 72.2874 30.208 73.0394 29.456C73.8074 28.704 74.1914 27.648 74.1914 26.288V23.528C73.7594 24.296 73.1194 24.936 72.2714 25.448C71.4234 25.96 70.4314 26.216 69.2954 26.216C68.1274 26.216 67.0634 25.928 66.1034 25.352C65.1594 24.776 64.4154 23.968 63.8714 22.928C63.3274 21.888 63.0554 20.704 63.0554 19.376C63.0554 18.032 63.3274 16.856 63.8714 15.848C64.4154 14.824 65.1594 14.032 66.1034 13.472C67.0634 12.912 68.1274 12.632 69.2954 12.632ZM74.1914 19.4C74.1914 18.408 73.9914 17.544 73.5914 16.808C73.1914 16.072 72.6474 15.512 71.9594 15.128C71.2874 14.728 70.5434 14.528 69.7274 14.528C68.9114 14.528 68.1674 14.72 67.4954 15.104C66.8234 15.488 66.2874 16.048 65.8874 16.784C65.4874 17.52 65.2874 18.384 65.2874 19.376C65.2874 20.384 65.4874 21.264 65.8874 22.016C66.2874 22.752 66.8234 23.32 67.4954 23.72C68.1674 24.104 68.9114 24.296 69.7274 24.296C70.5434 24.296 71.2874 24.104 71.9594 23.72C72.6474 23.32 73.1914 22.752 73.5914 22.016C73.9914 21.264 74.1914 20.392 74.1914 19.4ZM85.8262 26.216C84.5942 26.216 83.4742 25.936 82.4662 25.376C81.4742 24.816 80.6902 24.024 80.1142 23C79.5542 21.96 79.2742 20.76 79.2742 19.4C79.2742 18.056 79.5622 16.872 80.1382 15.848C80.7302 14.808 81.5302 14.016 82.5382 13.472C83.5462 12.912 84.6742 12.632 85.9222 12.632C87.1702 12.632 88.2982 12.912 89.3062 13.472C90.3142 14.016 91.1062 14.8 91.6822 15.824C92.2742 16.848 92.5702 18.04 92.5702 19.4C92.5702 20.76 92.2662 21.96 91.6582 23C91.0662 24.024 90.2582 24.816 89.2342 25.376C88.2102 25.936 87.0742 26.216 85.8262 26.216ZM85.8262 24.296C86.6102 24.296 87.3462 24.112 88.0342 23.744C88.7222 23.376 89.2742 22.824 89.6902 22.088C90.1222 21.352 90.3382 20.456 90.3382 19.4C90.3382 18.344 90.1302 17.448 89.7142 16.712C89.2982 15.976 88.7542 15.432 88.0822 15.08C87.4102 14.712 86.6822 14.528 85.8982 14.528C85.0982 14.528 84.3622 14.712 83.6902 15.08C83.0342 15.432 82.5062 15.976 82.1062 16.712C81.7062 17.448 81.5062 18.344 81.5062 19.4C81.5062 20.472 81.6982 21.376 82.0822 22.112C82.4822 22.848 83.0102 23.4 83.6662 23.768C84.3222 24.12 85.0422 24.296 85.8262 24.296ZM107.106 12.848V26H104.922V24.056C104.506 24.728 103.922 25.256 103.17 25.64C102.434 26.008 101.618 26.192 100.722 26.192C99.6978 26.192 98.7778 25.984 97.9618 25.568C97.1458 25.136 96.4978 24.496 96.0178 23.648C95.5538 22.8 95.3218 21.768 95.3218 20.552V12.848H97.4818V20.264C97.4818 21.56 97.8098 22.56 98.4658 23.264C99.1218 23.952 100.018 24.296 101.154 24.296C102.322 24.296 103.242 23.936 103.914 23.216C104.586 22.496 104.922 21.448 104.922 20.072V12.848H107.106ZM113.457 14.648V22.4C113.457 23.04 113.593 23.496 113.865 23.768C114.137 24.024 114.609 24.152 115.281 24.152H116.889V26H114.921C113.705 26 112.793 25.72 112.185 25.16C111.577 24.6 111.273 23.68 111.273 22.4V14.648H109.569V12.848H111.273V9.536H113.457V12.848H116.889V14.648H113.457Z"
+                                fill="#B70505" />
+
+                        </svg>
+                    </button>
+                </form>
+                    </a>
+                {% else %}
+                    <button onclick="window.location.href='{% url 'signup' %}';" class="signup-button">Signup</button>
+                    <button onclick="window.location.href='{% url 'login' %}';" class="login-button">Login</button>
+                {% endif %}
+            </div>
+            
+            
+            
+        </ul>
+        
+
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="{% static 'landmark/images/output-onlinepngtools_New.png' %}" alt="Company Logo" class="footer-logo">
+            </div>
+            <div class="footer-section">
+                <h4>LandMark Management Partner</h4>
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'diploma_list' %}">Diplomas</a></li>
+                    <li><a href="{% url 'mini_mba' %}">Mini MBA</a></li>
+                    <li><a href="{% url 'feedback' %}">Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Social Media</h4>
+                <div class="social-icons">
+                    <div class="social-item">
+                        <a href="https://www.facebook.com/LMPEGYPT?mibextid=ZbWKwL"><img src= "{% static 'landmark/images/facebook.png' %}" alt="Facebook"></a>
+                        <p>Facebook</p>
+                    </div>
+                    <div class="social-item">
+                        <a href="https://www.linkedin.com/company/landmark-management-partner/"><img src="{% static 'landmark/images/linkedin.png' %}" alt="LinkedIn"></a>
+                        <p>LinkedIn</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>edward.ghabour@landmarkmpartner.com</p>
+                <p>Building 11G/4 El Leselky, New Maadi, Cairo, Egypt</p>
+                <p>0101 652 6772</p>
+            </div>
+            <div class="footer-section">
+                <h4>Payment Methods</h4>
+                <div class="payment-icons">
+                    <img src="{% static 'landmark/images/fawry.png' %}" alt="Payment Icon 1">
+                    <img src="{% static 'landmark/images/vodafone.jpeg' %}" alt="Payment Icon 1">
+                    <img src="{% static 'landmark/images/instapay.jpeg' %}" alt="Payment Icon 1">
+                </div>
+                    <div class="payment-icons">
+                        <img src="{% static 'landmark/images/Ahl Masr.png' %}" alt="Payment Icon 2">
+                        <img src="{% static 'landmark/images/Banque Misr.jpeg' %}" alt="Payment Icon 3">
+                        <img src="{% static 'landmark/images/CIB.png' %}" alt="Payment Icon 4">
+                    </div>
+                    <div class="payment-icons">
+                        <img src="{% static 'landmark/images/FAB.jpeg' %}" alt="Payment Icon 5">
+                        <img src="{% static 'landmark/images/mashreq.png' %}" alt="Payment Icon 6">
+                        <img src="{% static 'landmark/images/ADIB.jpeg' %}" alt="Payment Icon 7">
+                        <img src="{% static 'landmark/images/attijariwafa.png' %}" alt="Payment Icon 8">
+                        <img src="{% static 'landmark/images/NBD.jpeg' %}" alt="Payment Icon 9">
+                        <img src="{% static 'landmark/images/ai bank.png' %}" alt="Payment Icon 10">
+                    </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'landmark/js/base.js' %}"></script>
+    <script src="{% static 'landmark/js/home.js' %}"></script>
+    <!-- <script src="{% static 'landmark/js/feedback.js' %}"></script> -->
+</body>
+</html>

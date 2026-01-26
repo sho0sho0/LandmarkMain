@@ -1,0 +1,534 @@
+header {
+     
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    max-width: 1241px; /* Adjust width as needed */
+    height: 150px;
+    position: relative;
+    box-sizing: border-box;
+
+
+ 
+}
+
+header .logo img {
+width: 300px; /* Adjust logo size */
+height: auto;
+}
+
+header nav ul {
+width: 1000px;
+height: 10px;
+top: 72px;
+left: 100px;
+display: flex;
+list-style: none;
+padding: 0;
+gap: 30px;
+flex-grow: 0;
+justify-content: center;
+
+
+ 
+}
+
+header nav ul li {
+position: relative;
+ 
+}
+
+header nav ul li a {
+width: auto;
+/* height: 33px; */
+
+font-family: 'Poppins', sans-serif;
+font-size: 1.2rem;
+font-weight: 400;
+color: #000000;
+text-decoration: none;
+padding: 0.5rem;
+display: block;
+transition: color 0.3s ease;
+}   
+
+header nav ul li a:hover{
+color: #014B9C;
+background-color: #ffffff;
+}
+.dropdown-content {
+position: relative;
+}
+
+.dropdown-content {
+width: 157px;
+height: 137px;
+display: none;
+position: absolute;
+background-color: #ffffff;
+box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+padding: 0.5rem ;
+border-radius: 15px;
+flex-direction: column;
+gap: 8px;
+z-index: 999;
+}
+
+.dropdown:hover .dropdown-content {
+display: flex;
+}
+
+.dropdown-content li {
+padding: 0.5rem 1rem;
+}
+
+.dropdown-content li a {
+color: #333;
+}
+
+
+.button-container {
+display: flex;
+gap: 20px; /* Adds space between the login and sign-up buttons */
+margin-top: 50px;
+ 
+}
+
+
+
+.signup-button {
+width: 130px;
+height: 54px;
+top: 62px;
+font-family: 'Poppins';
+font-size: 1rem;
+color: #014B9C;
+background-color: #ffffff;
+border: 2px solid #014B9C;
+border-radius: 10px;
+cursor: pointer;
+margin-bottom: 30px;
+margin-left: 20px; /* Adds a gap between sign-up and login buttons */
+}
+@media (max-width: 800px){
+   .signup-button {
+      width: 80px;
+      height: 40px;
+      top: 62px;
+      font-family: 'Poppins';
+      font-size: 1rem;
+      color: #014B9C;
+      background-color: #ffffff;
+      border: 2px solid #014B9C;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 30px;
+      margin-left: 20px; /* Adds a gap between sign-up and login buttons */
+      }
+}
+
+.login-button {
+width: 130px;
+height: 54px;
+top: 62px;
+font-family: 'Poppins';
+font-size: 1rem;
+color: #FDFDFD;
+background-color: #014B9C;
+border: 2px solid #014B9C;
+border-radius: 10px;
+cursor: pointer;
+margin-bottom: 30px;
+}
+@media (max-width: 800px){
+   .login-button {
+      width: 80px;
+      height: 40px;
+      top: 62px;
+      font-family: 'Poppins';
+      font-size: 1rem;
+      color: #FDFDFD;
+      background-color: #014B9C;
+      border: 2px solid #014B9C;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 30px;
+      }
+}
+
+.formobile{
+  display: none;
+  list-style: none;
+  margin-top: 25px;
+}
+.sidebar{
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 250px;
+  z-index: 999;
+  background-color:  white;
+  backdrop-filter: blur(10px);
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  list-style: none;
+  gap: 10px;
+   
+  
+}
+.sidebar li svg{
+  margin-top: 20px;
+}
+.sidebar li{
+  font-family: 'poppins';
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;  
+  margin-bottom: 10px; 
+}
+.corporates-content{
+  width: 85px;
+  height: 85px;
+  gap: 15px;
+  margin-top: 0px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+   
+}
+.corporates-content a{
+  font-family: 'poppins';
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+
+}
+
+.sidebar .mobilebutton-container{
+  width: 109px;
+  gap: 10px;
+  flex-direction: column;
+  
+}
+.sidebar .signup-button{
+  width: 140px;
+  border-radius: 15px;
+  padding: 8px 38px 8px 38px;
+  gap: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  margin-right: 10px;
+  margin-top: 2px;
+}
+.sidebar .login-button{
+  width: 140px;
+  border-radius: 15px;
+  padding: 8px 38px 8px 38px;
+  gap: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  margin-left: 17px;
+}
+
+.sidebar a{
+  width: 100%;
+  text-decoration: none;
+  color: #000;
+   
+}
+
+@media (max-width: 800px){
+
+  header{
+     width: 350px;
+     height: 50px;
+     top: 40px;
+     justify-content: space-between;
+     
+  }
+  header .logo img{
+     width: 150px;
+     height: 150px;
+     float: left;
+     margin-right: 10px;
+  }
+  
+  .hideonmobile{
+     display: none;
+  }
+  .button-container{
+     display: none;
+  }
+  .formobile{
+     float: right;
+     display: flex;
+  }
+}
+
+.button-container {
+    display: flex;
+    gap: 20px; /* Adds space between the login and sign-up buttons */
+    margin-top: 30px;
+    }
+    @media (max-width: 800px){
+      .button-container {
+         display: flex;
+         gap: 20px; /* Adds space between the login and sign-up buttons */
+         margin-top: 50px;
+         margin-right: 10px;
+         }
+   }
+    /* Profile Icon Styling */
+    .profile-icon img {
+     width: 40px; /* Adjust icon size */
+     height: 40px;
+     top: 10px;
+     left: 1161px;
+     border-radius: 50%; /* Makes the icon circular */
+     cursor: pointer;
+     transition: transform 0.3s ease;
+    }
+    
+    .profile-icon img:hover {
+     transform: scale(1.1); /* Slight zoom-in effect on hover */
+    }
+    @media (max-width: 800px){
+      .profile-icon img{
+         margin-bottom: 25px;
+      }
+   }
+/* Footer Style */
+.footer {
+    background: rgba(235, 241, 251, 1);
+    padding: 40px 0;
+    border-top: 2px solid #e0e4e8;
+    
+ }
+ 
+ .footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+ }
+ 
+ .footer-section {
+    flex: 1;
+    padding: 0 20px;
+    max-width: 500px;
+ }
+ 
+ .footer-logo {
+    width: 200px;
+    margin-bottom: 10px;
+    margin-right: 40px;
+ }
+ 
+ .footer-section h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+    
+ }
+ 
+ .footer-section p, .footer-section a {
+    color: #666;
+    font-size: 14px;
+    line-height: 24px;
+    text-decoration: none;
+    
+ }
+ 
+ .footer-section ul {
+    list-style: none;
+ }
+ 
+ .footer-section ul li {
+    margin-bottom: 8px;
+ }
+ 
+ .footer-section ul li a:hover {
+    color: #0052cc;
+ }
+ 
+ .social-icons {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap onto the next line */
+    gap: 20px; /* Space between icon-text pairs */
+ }
+ 
+ .social-item {
+    display: flex;
+    align-items: center; /* Align text and icon vertically */
+ }
+ 
+ .social-icons a {
+    margin-right: 10px; /* Space between icon and text */
+ }
+ 
+ .social-icons img {
+    width: 30px;
+    height: 30px;
+ }
+ 
+ .social-icons p {
+    margin: 0; /* Remove default margin from paragraph */
+ }
+ 
+ 
+ .payment-icons {
+    display: flex;
+    grid-gap: 10px; /* Gap between icons */
+    justify-items: center; /* Center the icons in the first row */
+    margin-bottom: 20px; /* Optional for spacing */
+     
+ }
+ 
+ .payment-icons img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Circular icons */
+    object-fit: cover;
+ }
+ 
+ /* For the first row, only one icon */
+ .payment-icons:nth-child(1) {
+    grid-template-columns: 1fr; /* One icon in the first row */
+    justify-content: center;
+    
+ }
+ 
+ /* For the second, third, and fourth rows, three icons per row */
+ .payment-icons:nth-child(2),
+ .payment-icons:nth-child(3),
+ .payment-icons:nth-child(4) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three icons per row */
+ }
+ 
+ /* Ensuring space between icons */
+ .payment-icons img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Circular icons */
+    object-fit: cover;
+    margin: 0 5px; /* Gap between icons */
+ }
+ 
+ .footer p {
+    font-size: 14px;
+    line-height: 24px;
+    color: #666;
+ }
+ 
+ /* Scroll animation */
+ @keyframes scroll-partners {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%); /* Move the entire container to the left */
+    }
+ }
+ 
+ /* Optional custom scrollbar styling */
+ .partners::-webkit-scrollbar {
+    height: 8px; /* Set height for the horizontal scrollbar */
+ }
+ 
+ .partners::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px;
+ }
+ 
+ .partners::-webkit-scrollbar-track {
+    background-color: #ffffff; /* Color of the scrollbar track */
+ }
+ @media (max-width: 800px) {
+     @media (max-width: 800px) {
+   .footer {
+      background: rgba(235, 241, 251, 1);
+      padding: 40px 0;
+      border-top: 2px solid #e0e4e8;
+      width: 800px;
+   }
+
+    .footer-container {
+       display: flex;
+       flex-direction: column; /* Stack all content vertically */
+       align-items: flex-start; /* Center all items horizontally */
+       padding: 20px; /* Add padding for spacing */
+	width:700px;
+    }
+ 
+    .footer-section {
+       width: 100%; /* Make each section span the full width */
+       text-align: center; /* Center-align the content within each section */
+       margin-bottom: 20px; /* Add spacing between sections */
+    }
+ 
+    .footer-logo {
+       width: 70%; /* Ensure the logo fits within the column */
+       margin-bottom: 20px;
+    }
+ 
+    .social-icons, .payment-icons {
+       display: flex; /* Keep icons in a row */
+       justify-content: center; /* Center the icons horizontally */
+       gap: 15px; /* Add spacing between icons */
+       margin-bottom: 20px;
+    }
+ 
+    .payment-icons img {
+       margin: 5px; /* Add slight spacing around payment icons */
+    }
+ 
+    .footer-section ul {
+       list-style: none; /* Remove bullet points */
+       padding: 0; /* Remove default list padding */
+    }
+ 
+    .footer-section ul li {
+       margin-bottom: 10px;
+    }
+ 
+    .footer p, .footer-section a {
+       text-align: center; /* Center-align text */
+       margin-bottom: 10px;
+    }
+ }
+ 
+ @media (max-width: 767px) {
+   
+
+    .trusted-section {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+  
+    .trusted-section .text-content {
+      width: 100%;
+    }
+  
+    .background-image {
+      width: 100%;
+    }
+  
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }

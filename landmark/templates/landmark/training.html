@@ -1,0 +1,198 @@
+{% extends 'landmark/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+
+    body  {
+        overflow-x: hidden; /* Prevents horizontal scrolling */
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+     }
+    
+     @media (max-width: 800px){
+       body{
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+       }
+    }
+             
+    
+    h2 {
+      font-weight: 600;
+      font-size: 48px;
+      margin-left: 120px;
+      margin-right: auto;
+      margin-top: 150px;
+      font-family: 'poppins';
+    }
+    
+    .merck {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      margin-left: 120px;
+    }
+    
+    .merck img {
+      width: 150px;
+      height: auto;
+    }
+    
+    .merck p {
+      font-weight: 500;
+      font-size: 32px;
+      margin: 0;
+      text-align: center; /* Center-align the text */
+    }
+    
+    .carousel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      margin: 0 auto;
+      width: 1253px;
+      height: 558px;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+    
+    .carousel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none; /* Hide all images by default */
+    }
+    
+    .carousel img.active {
+      display: block; /* Show the active image */
+    }
+    
+    /* Responsive styles for screens <= 800px */
+    @media (max-width: 800px) {
+      h2 {
+        width: 323px; /* Allow full width */
+        font-size: 32px;
+        line-height: 48px;
+        text-align: center; /* Center-align text */
+        margin: 30px auto; /* Center the heading */
+        margin-top: 130px;
+      }
+    
+      .merck {
+        
+        flex-direction: row; /* Stack items vertically */
+        width: 322px;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        gap: 12px;
+        margin-right: 100px;
+      }
+    
+      .merck img {
+        width: 67.11px;
+        height: auto;
+      }
+    
+      .merck p {
+        width: 209px; /* Allow full width */
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 27px;
+        text-align: center; /* Center-align the text */
+        margin: 0 auto; /* Center the paragraph */
+        margin-left: 10px;
+      }
+    
+      .carousel {
+        width: 100%; /* Allow the carousel to adapt responsively */
+        max-width: 322px; /* Limit the width for smaller screens */
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        padding: 0; /* Remove extra padding */
+        gap: 10px; /* Small spacing between elements */
+      }
+    }
+    
+    
+    
+</style>
+<h2>Landmark Training</h2>
+
+{% for partner in partners %}
+    <div class="merck">
+        <img src="{{ partner.logo.url }}" alt="{{ partner.company_name }} logo">
+      
+    </div>
+    
+    <!-- Dynamic Carousel for Each Partner -->
+    <div class="carousel" id="carousel{{ forloop.counter }}">
+        {% for image in partner.training_images.all %}
+            <img src="{{ image.image.url }}" alt="{% if image.title %}{{ image.title }}{% else %}Training Image{% endif %}" class="{% if forloop.first %}active{% endif %}">
+        {% empty %}
+            <p>No images available for this partner.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Carousel Arrows -->
+    <div class="arrows" data-carousel-id="carousel{{ forloop.counter }}" style="margin-bottom: 100px; display: flex;">
+        <button class="arrow left-arrow">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="15" fill=" "/>
+                <path d="M21.1875 15H8.8125" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M13.875 9.9375L8.8125 15L13.875 20.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="arrow right-arrow">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="15" fill=" "/>
+                <path d="M8.8125 15H21.1875" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16.125 9.9375L21.1875 15L16.125 20.0625" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+{% endfor %}
+
+<script>
+    function initCarousel(carouselId) {
+        const carousel = document.getElementById(carouselId);
+        const images = carousel.querySelectorAll('img');
+        let currentIndex = 0;
+
+        function updateCarousel(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+        }
+
+        const arrows = document.querySelector(`[data-carousel-id="${carouselId}"]`);
+        const leftArrow = arrows.querySelector('.left-arrow');
+        const rightArrow = arrows.querySelector('.right-arrow');
+
+        rightArrow.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateCarousel(currentIndex);
+        });
+
+        leftArrow.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateCarousel(currentIndex);
+        });
+    }
+
+    // Initialize all carousels
+    {% for partner in partners %}
+        initCarousel('carousel{{ forloop.counter }}');
+    {% endfor %}
+</script>
+
+{% endblock %}

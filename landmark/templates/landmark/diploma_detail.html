@@ -1,0 +1,41 @@
+<h1>{{ diploma.name }}</h1>
+<img src="{{ diploma.image.url }}" alt="{{ diploma.name }}">
+<p>{{ diploma.description }}</p>
+<p>Price: {{ diploma.price }}EGP</p>
+<p>Level: {{ diploma.get_level_display }}</p>
+
+<a href="{% url 'add_to_wishlist' diploma.id %}">Add to Wishlist</a>
+<a href="{% url 'take_diploma' diploma.id %}">Take Diploma</a>
+<p>Average Rating: {{ diploma.rating }}</p>
+
+<h2>Comments</h2>
+{% for comment in comments %}
+    <div>
+        <strong>{{ comment.user.username }}</strong>
+        <p>{{ comment.content }}</p>
+        <small>{{ comment.created_at }}</small>
+    </div>
+{% empty %}
+    <p>No comments yet.</p>
+{% endfor %}
+
+<h2>Ratings</h2>
+{% for rating in ratings %}
+    <div>
+        <strong>{{ rating.user.username }}</strong> - {{ rating.score }}
+    </div>
+{% empty %}
+    <p>No ratings yet.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <h2>Leave a Comment and Rating</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        {{ rating_form.as_p }}
+        <button type="submit">Submit Comment and Rating</button>
+    </form>
+{% else %}
+    <p>You need to <a href="{% url 'login' %}">log in</a> to comment or rate this diploma.</p>
+{% endif %}
